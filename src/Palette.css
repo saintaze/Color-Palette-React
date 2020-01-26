@@ -1,0 +1,10 @@
+.Palette {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Palette-colors {
+  height: 80%;
+}
