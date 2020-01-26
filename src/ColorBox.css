@@ -21,6 +21,7 @@
   line-height: 30px;
   font-size: 1rem;
   text-transform: uppercase;
+  cursor: pointer;
   opacity: 0;
 }
 
@@ -36,14 +37,14 @@
   bottom: 0;
   display: flex;
   justify-content: space-between;
+  font-size: 12px;
+  text-transform: uppercase;
 }
 
 .ColorBox .name {
   color: black;
   padding: 10px;
   letter-spacing: 1px;
-  text-transform: uppercase;
-  font-size: 12px;
 } 
 
 .ColorBox .see-more {
@@ -51,9 +52,8 @@
   color: white;
   border: none;
   outline: none;
-  text-transform: uppercase;
   width: 60px;
-  font-size: 12px;
   height: 35px;
   line-height: 35px;
+  text-transform: inherit;
 }
