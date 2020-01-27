@@ -8,3 +8,30 @@
 .Palette-colors {
   height: 80%;
 }
+
+.slider-container {
+  width: 300px;
+  margin:  10px;
+  display: inline-block;
+}
+
+.rc-slider-handle,
+.rc-slider-handle:focus,
+.rc-slider-handle:active,
+.rc-slider-handle:hover {
+  outline: none;
+  box-shadow: none;
+  width: 16px;
+  height: 16px;
+  background-color: #4caf50;
+  border: 2px solid #4caf50;
+  margin-top: -4.6px;
+}
+
+.rc-slider-track {
+  background-color: transparent;
+}
+
+.rc-slider-rail {
+  height: 8px;
+}

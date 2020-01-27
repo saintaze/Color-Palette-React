@@ -21,8 +21,14 @@ class Palette extends Component {
   render() { 
     return ( 
       <div className="Palette">
-        <div style={{margin: '1rem 2rem', width: '300px'}}>
-          <Slider defaultValue={this.state.colorScale} min={100} max={900} step={100} onChange={this.handleSliderChange} />
+        <div className='slider-container'>
+          <Slider 
+            defaultValue={this.state.colorScale} 
+            min={100} 
+            max={900} 
+            step={100} 
+            onChange={this.handleSliderChange} 
+            />
         </div>
         <div className="Palette-colors">
           {this.renderColorBoxes()}
