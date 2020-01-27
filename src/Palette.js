@@ -15,7 +15,7 @@ class Palette extends Component {
   renderColorBoxes = () => {
     const {colorScale, format} = this.state;
     const {palette} = this.props;
-    return palette.colors[colorScale].map(c => <ColorBox background={c[format]} name={c.name}/>)
+    return palette.colors[colorScale].map(c => <ColorBox background={c[format]} name={c.name} key={c.id}/>)
   }
 
   sliderChange = (newScale) => this.setState({ colorScale: newScale}) 
@@ -34,7 +34,10 @@ class Palette extends Component {
         <div className="Palette-colors">
           {this.renderColorBoxes()}
         </div>
-        
+        <footer className="Palette-footer">
+          {this.props.palette.paletteName}
+          <span className="emoji">{this.props.palette.emoji}</span>
+        </footer>
       </div>
      );
   }

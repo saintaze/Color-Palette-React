@@ -6,6 +6,19 @@
 }
 
 .Palette-colors {
-  height: 80%;
+  height: 85%;
+}
+
+.Palette-footer {
+  display: flex;
+  justify-content: flex-end;
+  font-weight: bold;
+  align-items: center;
+  height: 7.5%;
+}
+
+.emoji {
+  margin: 1rem;
+  font-size: 1.5rem;
 }
 
