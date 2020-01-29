@@ -8,11 +8,18 @@ import {generatePalette} from './colorHelpers';
 
 
 class App extends Component{
+
+  renderPalette = routeProps => { 
+    const paletteId = routeProps.match.params.id;
+    const palette = seedColors.find(p => p.id === paletteId);
+    return <Palette palette={generatePalette(palette)} />
+  }
+
   render () {
     return (
       <Switch >
         <Route exact path='/' render={()=> console.log('HOME')}/>
-        <Route exact path='/palette/:id' render={(routeProps)=> console.log(`PALETTE ${routeProps.match.params.id}`)}/>
+        <Route exact path='/palette/:id' render={this.renderPalette}/>
       </Switch>
       // <Palette palette={generatePalette(seedColors[7])} />
     );
