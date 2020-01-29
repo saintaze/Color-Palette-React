@@ -12,7 +12,7 @@ const styles = {
     justifyContent: 'center'
   },
   container: {
-    width: '50%',
+    width: '70%',
     // display: 'flex',
     // alignItems: 'flex-start',
     // flexDirection: 'column',
@@ -39,7 +39,7 @@ class PaletteList extends Component {
   }
 
   renderPaletteList = () => {
-    return this.props.seedColors.map(p => <MiniPalette {...p}/> )
+    return this.props.seedColors.map(p => <MiniPalette {...p} key={p.paletteName}/> )
   }
 
 

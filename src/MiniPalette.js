@@ -6,15 +6,17 @@ const styles = {
     backgroundColor: 'white',
     borderRadius: '5px',
     padding: '.5rem',
-    position: 'relative',
     overflow: 'hidden',
-    border: '1px solid red',
     '&:hover': {
       cursor: 'pointer'
     }
   },
   colors: {
-    backgroundColor: 'grey'
+    backgroundColor: '#dae1e4',
+    borderRadius: '5px',
+    height: '150px',
+    overflow: 'hidden',
+    // marginBottom: '-9px'
   },
   title: {
     display: 'flex',
@@ -29,14 +31,30 @@ const styles = {
   emoji: {
     marginLeft: '.5rem',
     fontSize: '1.5rem'
+  },
+  miniColorBox: {
+    height: '25%',
+    width: '20%',
+    display: 'inline-block',
+    marginBottom: '-3.5px'
   }
 };
 
+
+
 const MiniPalette = props => {
-  const{classes, paletteName, emoji} = props;
+  const{classes, paletteName, emoji, colors} = props;
+  
+  const renderMiniColorBoxes = () => {
+    return colors.map(c => 
+      <div className={classes.miniColorBox} style={{backgroundColor: c.color}} key={c.name}></div>
+    )
+  }
   return (
     <div className={classes.root}>
-      <div className={classes.colors}>s</div>
+      <div className={classes.colors}>
+        {renderMiniColorBoxes()}
+      </div>
       <h5 className={classes.title}>{paletteName} <span className={classes.emoji}>{emoji}</span></h5>
     </div>
   );
