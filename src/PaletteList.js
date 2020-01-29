@@ -38,8 +38,12 @@ class PaletteList extends Component {
     this.state = {  }
   }
 
+  handlePaletteClick = (id) => this.props.history.push(`/palette/${id}`)
+
   renderPaletteList = () => {
-    return this.props.seedColors.map(p => <MiniPalette {...p} key={p.paletteName}/> )
+    return this.props.seedColors.map(p =>  
+      <MiniPalette {...p} key={p.paletteName} onPaletteClick={() => this.handlePaletteClick(p.id)} />
+    )
   }
 
 

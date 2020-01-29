@@ -51,7 +51,7 @@ const MiniPalette = props => {
     )
   }
   return (
-    <div className={classes.root}>
+    <div className={classes.root} onClick={props.onPaletteClick}>
       <div className={classes.colors}>
         {renderMiniColorBoxes()}
       </div>
