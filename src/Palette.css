@@ -2,11 +2,10 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  /* justify-content: center;  */
 }
 
 .Palette-colors {
-  height: 85%;
+  height: 86%;
 }
 
 .Palette-footer {
@@ -14,11 +13,13 @@
   justify-content: flex-end;
   font-weight: bold;
   align-items: center;
-  height: 7.5%;
+  height: 7%;
+  font-size: 1rem;
+  line-height: 7%;
 }
 
 .emoji {
   margin: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 
