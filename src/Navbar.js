@@ -25,24 +25,30 @@ class Navbar extends Component {
     setTimeout(() => this.setState({ showSnackbar: false }), 2500)
   }
 
+  renderSlider =( ) => {
+    return this.props.showSlider && (
+      <div className="slider-container">
+        <span>Level: {this.props.colorScale}</span>
+        <div className='slider'>
+          <Slider
+            defaultValue={this.props.colorScale}
+            min={100}
+            max={900}
+            step={100}
+            onChange={this.props.handleSliderChange}
+          />
+        </div>
+      </div>
+    );
+  }
+
   render() { 
     return ( 
       <nav className="Navbar">
         <div className="logo">
           <Link to="/">colorpinetta</Link>
         </div>
-        <div className="slider-container">
-          <span>Level: {this.props.colorScale}</span>
-          <div className='slider'>
-            <Slider
-              defaultValue={this.props.colorScale}
-              min={100}
-              max={900}
-              step={100}
-              onChange={this.props.handleSliderChange}
-            />
-          </div>
-        </div>
+        {this.renderSlider()}
         <div className='select-container'>
           <Select value={this.state.format} onChange={this.handleFormatChange}>
             <MenuItem value='hex'>Hex - #ffffff</MenuItem>
