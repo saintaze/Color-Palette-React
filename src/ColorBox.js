@@ -16,8 +16,12 @@ class ColorBox extends Component {
     })
   }
 
-  handleSeeMore = () => {
-
+  renderSeeMoreLink = () => {
+   return this.props.showMoreLink && (
+      <Link to={this.props.seeMoreUrl} onClick={e => e.stopPropagation()}>
+        <button className="see-more">more</button>
+      </Link>
+    );
   }
 
   render() { 
@@ -34,9 +38,7 @@ class ColorBox extends Component {
           <button className="copy-button">copy</button>
           <div className="content-box">
             <div className="name">{name}</div>
-            <Link to={this.props.seeMoreUrl} onClick={e => e.stopPropagation()}>
-              <button className="see-more">more</button>
-            </Link>
+            {this.renderSeeMoreLink()}
           </div>
         </div>
       </CopyToClipboard>

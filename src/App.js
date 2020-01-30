@@ -11,18 +11,26 @@ import SingleColorPalette from './SingleColorPalette';
 
 class App extends Component{
 
-  renderPalette = routeProps => { 
-    const paletteId = routeProps.match.params.id;
-    const palette = seedColors.find(p => p.id === paletteId);
-    return <Palette palette={generatePalette(palette)} />
+  renderPalette = id => { 
+    const palette = seedColors.find(p => p.id === id);
+    return generatePalette(palette)
   }
 
   render () {
     return (
       <Switch >
-        <Route exact path='/' render={(routeProps)=> <PaletteList seedColors={seedColors} {...routeProps}/>}/>
-        <Route exact path='/palette/:id' render={this.renderPalette}/>
-        <Route exact path='/palette/:paletteId/:colorId' render={()=> <SingleColorPalette />}/>
+        <Route 
+          exact 
+          path='/' 
+          render={(routeProps)=> <PaletteList seedColors={seedColors} {...routeProps}/>}/>
+        <Route 
+          exact 
+          path='/palette/:id' 
+          render={(routeProps) => <Palette palette={this.renderPalette(routeProps.match.params.id)} />}/>
+        <Route 
+          exact 
+          path='/palette/:paletteId/:colorId' 
+          render={(routeProps) => <SingleColorPalette palette={this.renderPalette(routeProps.match.params.paletteId)} colorId={routeProps.match.params.colorId} />}/>
       </Switch>
     );
   }
