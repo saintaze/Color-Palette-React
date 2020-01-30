@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import {Link} from 'react-router-dom';
 
 class SigleColorPalette extends Component {
   constructor(props) {
@@ -30,10 +31,15 @@ class SigleColorPalette extends Component {
 
   render(){
     return (
-      <div className='Palette'>
+      <div className='SingleColorPalette Palette'>
         <Navbar showSlider={false} formatChange={this.formatChange}/>
         <div className='Palette-colors'>
           {this.renderColorBoxes()}
+          <div className='ColorBox' style={{backgroundColor: 'black'}}>
+            <Link to={`/palette/${this.props.palette.id}`}>
+              <button className="go-back">Go Back</button>
+            </Link>
+          </div>
         </div>
         <Footer emoji={this.props.palette.emoji} paletteName={this.props.palette.paletteName} />
       </div>
