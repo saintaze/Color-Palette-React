@@ -25,7 +25,7 @@ class SigleColorPalette extends Component {
 
   renderColorBoxes = () => {
     return this._shades.map(c => 
-      <ColorBox background={c[this.state.format]} name={c.name} key={c.name} showMoreLink={false}/>
+      <ColorBox background={c[this.state.format]} name={c.name} key={c.name} showingFullPalette={false}/>
     );
   } 
 

@@ -21,7 +21,7 @@ class Palette extends Component {
         background={c[format]} 
         name={c.name} key={c.id} 
         seeMoreUrl={`/palette/${palette.id}/${c.id}`}
-        showMoreLink
+        showingFullPalette
       />
     )
   }
