@@ -7,9 +7,9 @@
   margin-bottom: -3px;
 } 
 
-/* .SingleColorPalette .ColorBox {
+.SingleColorPalette .ColorBox {
   height: 50%;
-} */
+}
 
 .copy-button, .go-back{
   position: absolute;
