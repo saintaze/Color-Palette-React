@@ -18,6 +18,7 @@ class App extends Component{
 
   renderPalette = id => { 
     const palette = this.state.palettes.find(p => p.id === id);
+    console.log(generatePalette(palette))
     return generatePalette(palette)
   }
 
@@ -35,7 +36,7 @@ class App extends Component{
         <Route
           exact
           path='/palette/new'
-          render={(routeProps) => <NewPaletteForm savePalette={this.savePalette} {...routeProps}/>} />
+          render={(routeProps) => <NewPaletteForm savePalette={this.savePalette} palettes={this.state.palettes} {...routeProps}/>} />
         <Route 
           exact 
           path='/palette/:id' 
