@@ -84,7 +84,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 
-export default function NewPaletteForm() {
+export default function NewPaletteForm(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -109,6 +109,17 @@ export default function NewPaletteForm() {
   };
   const handleChange = (e) => setNewName(e.target.value);
 
+  const handleSubmit = () => {
+    const paletteName = 'Hello Universe';
+    const newPalette = {
+      id: paletteName.toLowerCase().replace(/ /g, '-'),
+      paletteName,
+      colors
+    }
+    props.savePalette(newPalette);
+    props.history.push('/');
+  }
+
   React.useEffect(() => {
     console.log('s')
     ValidatorForm.addValidationRule('isColorNameUnique', (value) => {
@@ -123,6 +134,7 @@ export default function NewPaletteForm() {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
+        color='default'
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
@@ -138,6 +150,7 @@ export default function NewPaletteForm() {
         >
           <MenuIcon />
         </IconButton>
+        <Button variant='contained' color='primary' onClick={handleSubmit} disableElevation>Save Palette</Button>
       </Toolbar>
       </AppBar>
       <Drawer
