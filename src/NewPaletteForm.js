@@ -166,7 +166,7 @@ export default function NewPaletteForm(props) {
             onChange={handleChange}
             name="newPaletteName"
             value={newPaletteName}
-              validators={['required', 'isPaletteNameUnique']}
+            validators={['required', 'isPaletteNameUnique']}
             errorMessages={['enter a color name', 'palette name already taken']}
           />
           <Button type="submit" variant='contained' color='primary' onClick={handleSubmit} disableElevation>Save Palette</Button>
