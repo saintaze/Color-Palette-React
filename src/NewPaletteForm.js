@@ -17,6 +17,8 @@ import { ChromePicker } from 'react-color';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import DraggableColorList from './DraggableColorList';
 import arrayMove from 'array-move';
+import {Link} from 'react-router-dom';
+import PaletteFormNav from './PaletteFormNav';
 
 const drawerWidth = 400;
 
@@ -121,8 +123,7 @@ export default function NewPaletteForm(props) {
     }
   };
 
-  const handleSubmit = () => {
-    const paletteName = newPaletteName;
+  const handleSubmit = (paletteName) => {
     const newPalette = {
       id: paletteName.toLowerCase().replace(/ /g, '-'),
       paletteName,
@@ -148,51 +149,23 @@ export default function NewPaletteForm(props) {
   };
 
   React.useEffect(() => {
-    console.log('s')
     ValidatorForm.addValidationRule('isColorNameUnique', (value) => {
       return colors.every(({name}) => name.toLowerCase() !== value.toLowerCase())
     });
     ValidatorForm.addValidationRule('isColorUnique', (value) => {
       return colors.every(({ color }) => color !== selectedColor)
     });
-    ValidatorForm.addValidationRule('isPaletteNameUnique', (value) => {
-      return props.palettes.every(({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase())
-    });
   }, [colors]);
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        color='default'
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-      <Toolbar>
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          onClick={handleDrawerOpen}
-          edge="start"
-          className={clsx(classes.menuButton, open && classes.hide)}
-        >
-          <MenuIcon />
-        </IconButton>
-        <ValidatorForm onSubmit={handleSubmit}>
-          <TextValidator
-            label="Palette Name"
-            onChange={handleChange}
-            name="newPaletteName"
-            value={newPaletteName}
-            validators={['required', 'isPaletteNameUnique']}
-            errorMessages={['enter a color name', 'palette name already taken']}
-          />
-          <Button type="submit" variant='contained' color='primary' onClick={handleSubmit} disableElevation>Save Palette</Button>
-        </ValidatorForm>
-      </Toolbar>
-      </AppBar>
+      <PaletteFormNav 
+        open={open} 
+        classes={classes} 
+        palettes={props.palettes} 
+        handleSubmit={handleSubmit}
+        handleDrawerOpen={handleDrawerOpen}
+        />
       <Drawer
         className={classes.drawer}
         variant="persistent"
