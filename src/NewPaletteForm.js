@@ -70,6 +70,25 @@ const useStyles = makeStyles((theme: Theme) =>
       }),
       marginLeft: 0,
     },
+    container: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexDirection: 'column',
+      height: '100%',
+      width: '89%',
+      margin: '0 auto'
+    },
+    btns: {
+      width: '100%',
+      marginBottom: '1rem',
+      display: 'flex',
+      justifyContent: 'space-between'
+    },
+    btn: {
+      width: '49%'
+    },
+   
   }),
 );
 
@@ -127,7 +146,7 @@ export default function NewPaletteForm(props) {
     <div className={classes.root}>
       <PaletteFormNav 
         open={open} 
-        classes={classes} 
+        classes={classes}
         palettes={props.palettes} 
         handleSubmit={handleSubmit}
         handleDrawerOpen={handleDrawerOpen}
@@ -147,16 +166,18 @@ export default function NewPaletteForm(props) {
           </IconButton>
         </div>
         <Divider />
-        <Typography variant='h4'>Design Your Palette</Typography>
-        <div>
-          <Button onClick={clearPalette} variant='contained' color='secondary' disableElevation>Clear Palette</Button>
-          <Button disabled={paletteIsFull} onClick={handleRandomColor} variant='contained' color='primary' disableElevation>Random Color</Button>
-        </div>
-       <ColorPickerForm 
-          paletteIsFull={paletteIsFull}
-          addNewColor={addNewColor}
-          colors={colors}
-          />        
+        <div className={classes.container}>
+          <Typography variant='h4' gutterBottom>Create A Palette</Typography>
+          <div className={classes.btns}>
+            <Button className={classes.btn} onClick={clearPalette} variant='contained' color='secondary' disableElevation>Clear Palette</Button>
+            <Button className={classes.btn} disabled={paletteIsFull} onClick={handleRandomColor} variant='contained' color='primary' disableElevation>Random Color</Button>
+          </div>
+          <ColorPickerForm
+            paletteIsFull={paletteIsFull}
+            addNewColor={addNewColor}
+            colors={colors}
+          />      
+        </div>  
       </Drawer>
       <main className={clsx(classes.content, {[classes.contentShift]: open})}>
         <div className={classes.drawerHeader} />

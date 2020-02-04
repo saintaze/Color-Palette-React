@@ -7,8 +7,20 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-
 import { Link } from 'react-router-dom';
+import { withStyles } from '@material-ui/styles';
+
+
+const styles = {
+  root: {
+    display: 'flex',
+  },
+  cToolbar: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'row'
+  }
+}
 
 class PaletteFormNav extends React.Component {
   constructor(props) {
@@ -19,11 +31,7 @@ class PaletteFormNav extends React.Component {
   }
 
   handleChange = (e) => {
-    if (e.target.name === 'newColorName') {
-      // setNewColorName(e.target.value)
-    } else if (e.target.name === 'newPaletteName') {
-      this.setState({[e.target.name]: e.target.value})
-    }
+    this.setState({[e.target.name]: e.target.value})
   };
 
   componentDidMount = () =>{
@@ -33,47 +41,51 @@ class PaletteFormNav extends React.Component {
   }
 
   render() { 
-    const { classes, open, handleSubmit, handleDrawerOpen} = this.props;
-    const { newPaletteName } = this.state;
+    const { classes: mClasses, open, handleSubmit, handleDrawerOpen} = this.props;
+    const {newPaletteName} = this.state;
+
     return ( 
       <div>
         <CssBaseline />
         <AppBar
           color='default'
           position="fixed"
-          className={clsx(classes.appBar, {
-            [classes.appBarShift]: open,
+          className={clsx(mClasses.appBar, {
+            [mClasses.appBarShift]: open,
           })}
         >
-          <Toolbar>
+          <Toolbar className={this.props.classes.cToolbar}>
             <IconButton
               color="inherit"
               aria-label="open drawer"
               onClick={handleDrawerOpen}
               edge="start"
-              className={clsx(classes.menuButton, open && classes.hide)}
+              className={clsx(mClasses.menuButton, open && mClasses.hide)}
             >
               <MenuIcon />
             </IconButton>
-            <ValidatorForm onSubmit={() => handleSubmit(newPaletteName) }>
-              <TextValidator
-                label="Palette Name"
-                onChange={this.handleChange}
-                name="newPaletteName"
-                value={newPaletteName}
-                validators={['required', 'isPaletteNameUnique']}
-                errorMessages={['enter a color name', 'palette name already taken']}
-              />
-              <Link to='/'>
-                <Button variant='contained' color='primary' disableElevation>Go Back</Button>
-              </Link>
-              <Button type="submit" variant='contained' color='primary'  disableElevation>Save Palette</Button>
-            </ValidatorForm>
+            <div className={mClasses.navBtns}>
+              <ValidatorForm onSubmit={() => handleSubmit(newPaletteName) }>
+                <TextValidator
+                  label="Palette Name"
+                  onChange={this.handleChange}
+                  name="newPaletteName"
+                  value={newPaletteName}
+                  validators={['required', 'isPaletteNameUnique']}
+                  errorMessages={['enter a color name', 'palette name already taken']}
+                />
+                <Button type="submit" variant='contained' color='primary'  disableElevation>Save Palette</Button>
+
+                <Link to='/'>
+                  <Button variant='contained' color='primary' disableElevation>Go Back</Button>
+                </Link>
+              </ValidatorForm>
+            </div>
           </Toolbar>
         </AppBar>
       </div> 
     );
   }
 }
- 
-export default PaletteFormNav;
+
+export default withStyles(styles)(PaletteFormNav);
