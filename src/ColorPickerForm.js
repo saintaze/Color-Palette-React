@@ -76,7 +76,6 @@ class ColorPickerForm extends React.Component {
             errorMessages={['enter a color name', 'color name should be unique', 'color already used']}
           />
           <Button 
-           
             className={classes.addColor}
             disabled={paletteIsFull} 
             type="submit" 
