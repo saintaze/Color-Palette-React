@@ -36,18 +36,19 @@ class PaletteMetaForm extends React.Component {
     const {handleSubmit} = this.props;
     return (
       <div>
-        <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
-          Open form dialog
+        <Button style={{marginRight: '.5rem'}} variant="contained" color="secondary" onClick={this.handleClickOpen} disableElevation>
+         Save
         </Button>
-        <Dialog open={open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
-          <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+        <Dialog  style={{padding: '1rem'}} open={open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
+          <DialogTitle id="form-dialog-title">Choose a Palette name</DialogTitle>
+          <ValidatorForm onSubmit={() => handleSubmit(newPaletteName)}>
           <DialogContent>
             <DialogContentText>
-              To subscribe to this website, please enter your email address here. We will send updates
-              occasionally.
-          </DialogContentText>
-            <ValidatorForm onSubmit={() => handleSubmit(newPaletteName)}>
+              Please enter a name for your new beautiful palette. Make sure it's unqiue!
+            </DialogContentText>
               <TextValidator
+                fullWidth
+                margin='normal'
                 label="Palette Name"
                 onChange={this.handleChange}
                 name="newPaletteName"
@@ -55,17 +56,12 @@ class PaletteMetaForm extends React.Component {
                 validators={['required', 'isPaletteNameUnique']}
                 errorMessages={['enter a color name', 'palette name already taken']}
               />
-              <Button type="submit" variant='contained' color='primary' disableElevation>Save Palette</Button>
-            </ValidatorForm>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
-              Cancel
-          </Button>
-            <Button onClick={this.handleClose} color="primary">
-              Subscribe
-          </Button>
+            <Button color='primary' onClick={this.handleClose}>Cancel</Button>
+            <Button type="submit" variant='contained' color='primary' disableElevation>Save Palette</Button>
           </DialogActions>
+          </ValidatorForm>
         </Dialog>
       </div>
     );

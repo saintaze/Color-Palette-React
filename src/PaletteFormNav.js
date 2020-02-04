@@ -19,6 +19,12 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     flexDirection: 'row'
+  },
+  navBtns: {
+    display: 'flex',
+    '& a': {
+      textDecoration: "none"
+    }
   }
 }
 
@@ -53,7 +59,7 @@ class PaletteFormNav extends React.Component {
             <div className={mClasses.navBtns}>
               <PaletteMetaForm handleSubmit={handleSubmit} palettes={palettes}/>
               <Link to='/'>
-                <Button variant='contained' color='primary' disableElevation>Go Back</Button>
+                <Button  variant='contained' color='primary' disableElevation>Go Back</Button>
               </Link>
             </div>
           </Toolbar>
