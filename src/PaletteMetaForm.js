@@ -6,24 +6,43 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { Picker } from 'emoji-mart'
+import 'emoji-mart/css/emoji-mart.css'
 
 class PaletteMetaForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { open: false, newPaletteName: '' }
+    this.state = { 
+      newPaletteName: '',
+      stage: '' 
+    }
   }
 
   handleClickOpen = () => {
-    this.setState({open: true});
+    this.setState({stage: 'form'});
   };
 
   handleClose = () => {
-    this.setState({open: false});
+    this.setState({stage: '', newPaletteName: ''});
   };
 
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
   };
+
+  showEmojiPicker = () => {
+    this.setState({stage: 'emoji'})
+  }
+
+  savePalette = (emoji) => {
+    const paletteName = this.state.newPaletteName;
+    const newPalette = {
+      id: paletteName.toLowerCase().replace(/ /g, '-'),
+      emoji: emoji.native, 
+      paletteName
+    }
+    this.props.handleSubmit(newPalette);
+  }
 
   componentDidMount = () => {
     ValidatorForm.addValidationRule('isPaletteNameUnique', (value) => {
@@ -32,16 +51,19 @@ class PaletteMetaForm extends React.Component {
   }
 
   render() { 
-    const { open, newPaletteName } = this.state;
-    const {handleSubmit} = this.props;
+    const { newPaletteName, stage } = this.state;
     return (
       <div>
+        <Dialog open={stage === 'emoji'} onClose={this.handleClose}>
+          <DialogTitle id="form-dialog-title">Choose a Palette Emoji</DialogTitle>
+          <Picker set='emojione' onSelect={this.savePalette} title='Choose Palette Emoji'/>
+        </Dialog>
         <Button style={{marginRight: '.5rem'}} variant="contained" color="secondary" onClick={this.handleClickOpen} disableElevation>
          Save
         </Button>
-        <Dialog  style={{padding: '1rem'}} open={open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
+        <Dialog style={{ padding: '1rem' }} open={stage === 'form'} onClose={this.handleClose} aria-labelledby="form-dialog-title">
           <DialogTitle id="form-dialog-title">Choose a Palette name</DialogTitle>
-          <ValidatorForm onSubmit={() => handleSubmit(newPaletteName)}>
+          <ValidatorForm onSubmit={this.showEmojiPicker}>
           <DialogContent>
             <DialogContentText>
               Please enter a name for your new beautiful palette. Make sure it's unqiue!

@@ -87,7 +87,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     btn: {
       width: '49%'
-    },
+    }
    
   }),
 );
@@ -118,13 +118,8 @@ export default function NewPaletteForm(props) {
     setColors([...colors, newColor]);
   };
 
-  const handleSubmit = (paletteName) => {
-    const newPalette = {
-      id: paletteName.toLowerCase().replace(/ /g, '-'),
-      paletteName,
-      colors
-    }
-    props.savePalette(newPalette);
+  const handleSubmit = (newPalette) => {
+    props.savePalette({...newPalette, colors});
     props.history.push('/');
   }
 
