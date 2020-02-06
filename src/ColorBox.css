@@ -37,17 +37,6 @@
   transition: all .5s;
 }
 
-.content-box{
-  width: 100%;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-  text-transform: uppercase;
-}
-
 .name {
   color: black;
   padding: 10px;
@@ -127,4 +116,10 @@
 .copy-msg div {
   font-size: 2rem;
   font-weight: 100;
+}
+
+@media (max-width: 576px){
+  .copy-msg h1 {
+    font-size: 5rem;
+  }
 }

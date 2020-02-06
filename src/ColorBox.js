@@ -21,11 +21,11 @@ const styles = {
     },
     [media('lg')]: {
       width: '25%',
-      height: props => props.showingFullPalette ? '20%' : '10%',
+      height: props => props.showingFullPalette ? '20%' : '33.333%',
     },
     [media('md')]: {
       width: '50%',
-      height: props => props.showingFullPalette ? '10%' : '10%',
+      height: props => props.showingFullPalette ? '10%' : '20%',
     },
     [media('xs')]: {
       width: '100%',
@@ -66,7 +66,24 @@ const styles = {
     textTransform: 'uppercase',
     cursor: 'pointer',
     opacity: '0',
-    color: props => chroma(props.background).luminance() >= .6 ? 'rgba(0, 0, 0, .8)' : 'white' 
+    zIndex: '2',
+    color: props => chroma(props.background).luminance() >= .6 ? 'rgba(0, 0, 0, .8)' : 'white', 
+    [media('xs')]: {
+      backgroundColor: 'rgba(255,255,255, .4 )',
+    }
+  },
+  contentBox: {
+    width: '100%',
+    position: 'absolute',
+    left: '0',
+    bottom: '0',
+    display: 'flex',
+    justifyContent: 'space-between',
+    fontSize: '12px',
+    textTransform: 'uppercase',
+    [media('xs')]: {
+      height: '100%'
+    }
   }
 }
 
@@ -103,7 +120,7 @@ class ColorBox extends Component {
             <div className={classes.copyText}>{background}</div>
           </div>
           <button className={classes.copyButton}>copy</button>
-          <div className="content-box">
+          <div className={classes.contentBox}>
             <div className={classes.colorName}>{name}</div>
             {this.renderSeeMoreLink()}
           </div>

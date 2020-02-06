@@ -3,6 +3,26 @@ import ColorBox from './ColorBox';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import {Link} from 'react-router-dom';
+import { withStyles } from '@material-ui/core/styles';
+import media from './mediaQueries';
+
+const styles = {
+  goBackBox :{
+    backgroundColor: 'black',
+    [media('lg')]: {
+      width: '25%',
+      height: '33.3333% !important'
+    },
+    [media('md')]: {
+      width: '50%',
+      height: '20% !important'
+    },
+    [media('xs')]: {
+      width: '100%',
+      height: '10% !important'
+    }
+  }
+}
 
 class SigleColorPalette extends Component {
   constructor(props) {
@@ -35,7 +55,7 @@ class SigleColorPalette extends Component {
         <Navbar showSlider={false} formatChange={this.formatChange}/>
         <div className='Palette-colors'>
           {this.renderColorBoxes()}
-          <div className='ColorBox' style={{backgroundColor: 'black'}}>
+          <div className={`ColorBox ${this.props.classes.goBackBox}` }>
             <Link to={`/palette/${this.props.palette.id}`}>
               <button className="go-back">Go Back</button>
             </Link>
@@ -47,4 +67,4 @@ class SigleColorPalette extends Component {
   }
 } 
 
-export default SigleColorPalette;
+export default withStyles(styles)(SigleColorPalette);
