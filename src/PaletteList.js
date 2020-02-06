@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import {Link} from 'react-router-dom';
 import MiniPalette from './MiniPalette';
+import media from './mediaQueries';
 
 const styles = {
   root: {
@@ -11,7 +12,7 @@ const styles = {
     justifyContent: 'center'
   },
   container: {
-    width: '70%',
+    width: '70%'
   },
   nav: {
     color: 'white',
@@ -26,7 +27,15 @@ const styles = {
     boxSizing: 'border-box',
     display: 'grid',
     gridTemplateColumns: 'repeat(3, 30%)',
-    gridGap: '5%'
+    gridGap: '2.5rem',
+    [media('md')]: {
+      gridTemplateColumns: 'repeat(2, 50%)',
+      gridGap: '1.8rem',
+    },
+    [media('xs')]: {
+      gridTemplateColumns: 'repeat(1, 100%)',
+      gridGap: '1rem',
+    },
   }
 };
 
@@ -49,7 +58,6 @@ class PaletteList extends Component {
         />
     )
   }
-
 
   render() { 
     const {classes} = this.props;

@@ -5,10 +5,28 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-
-import 'rc-slider/assets/index.css';
-import './Navbar.css';
 import { Link } from 'react-router-dom';
+import { withStyles } from '@material-ui/styles';
+import 'rc-slider/assets/index.css';
+import 'emoji-mart/css/emoji-mart.css';
+import './Navbar.css';
+import media from './mediaQueries';
+
+const styles =  {
+  logo: {
+    backgroundColor: '#eceff1',
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    fontFamily: 'Roboto',
+    marginRight: '15px',
+    fontSize: '22px',
+    padding: '0 13px',
+    [media('sm')]: {
+      display: 'none'
+    }
+  }
+}
 
 class Navbar extends Component {
   constructor(props) {
@@ -25,9 +43,9 @@ class Navbar extends Component {
     setTimeout(() => this.setState({ showSnackbar: false }), 2500)
   }
 
-  renderSlider =( ) => {
+  renderSlider = ( ) => {
     return this.props.showSlider && (
-      <div className="slider-container">
+      <div className='slider-container'>
         <span>Level: {this.props.colorScale}</span>
         <div className='slider'>
           <Slider
@@ -45,7 +63,7 @@ class Navbar extends Component {
   render() { 
     return ( 
       <nav className="Navbar">
-        <div className="logo">
+        <div className={this.props.classes.logo}>
           <Link to="/">colorpinetta</Link>
         </div>
         {this.renderSlider()}
@@ -77,4 +95,4 @@ class Navbar extends Component {
 
 }
  
-export default Navbar;
+export default withStyles(styles)(Navbar);
