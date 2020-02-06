@@ -3,6 +3,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import chroma from "chroma-js";
+import media from './mediaQueries';
 
 import './ColorBox.css';
 
@@ -17,6 +18,18 @@ const styles = {
     '&:hover button': {
       opacity: 1,
       transition: 'all .5s'
+    },
+    [media('lg')]: {
+      width: '25%',
+      height: props => props.showingFullPalette ? '20%' : '10%',
+    },
+    [media('md')]: {
+      width: '50%',
+      height: props => props.showingFullPalette ? '10%' : '10%',
+    },
+    [media('xs')]: {
+      width: '100%',
+      height: props => props.showingFullPalette ? '5%' : '10%',
     }
   },
   copyText: {
