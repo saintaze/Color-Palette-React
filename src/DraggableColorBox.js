@@ -2,6 +2,7 @@ import React from 'react';
 import {withStyles} from '@material-ui/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { SortableElement } from 'react-sortable-hoc';
+import media from './mediaQueries';
 
 const styles = {
   root: {
@@ -15,6 +16,18 @@ const styles = {
       color: 'white',
       transform: 'scale(1.2)',
       transition: 'all .3s ease-in-out'
+    },
+    [media('lg')]: {
+      width: '25%',
+      height: '20%',
+    },
+    [media('md')]: {
+      width: '50%',
+      height: '10%',
+    },
+    [media('sm')]: {
+      width: '100%',
+      height: '5%',
     }
   },
   contentBox: {

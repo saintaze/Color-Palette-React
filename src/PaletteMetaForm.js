@@ -7,7 +7,19 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Picker } from 'emoji-mart'
-import 'emoji-mart/css/emoji-mart.css'
+import { withStyles } from '@material-ui/styles';
+import 'emoji-mart/css/emoji-mart.css';
+import media from './mediaQueries';
+
+const styles = {
+ saveBtn : {
+    [media('xs')]: {
+      padding: '0 6px',
+      fontSize: '.8rem',
+      lineHeight: '30px'
+    }
+  }
+}
 
 class PaletteMetaForm extends React.Component {
   constructor(props) {
@@ -58,7 +70,7 @@ class PaletteMetaForm extends React.Component {
           <DialogTitle id="form-dialog-title">Choose a Palette Emoji</DialogTitle>
           <Picker set='emojione' onSelect={this.savePalette} title='Choose Palette Emoji'/>
         </Dialog>
-        <Button style={{marginRight: '.5rem'}} variant="contained" color="secondary" onClick={this.handleClickOpen} disableElevation>
+        <Button className={this.props.classes.saveBtn} style={{marginRight: '.5rem'}} variant="contained" color="secondary" onClick={this.handleClickOpen} disableElevation>
          Save
         </Button>
         <Dialog style={{ padding: '1rem' }} open={stage === 'form'} onClose={this.handleClose} aria-labelledby="form-dialog-title">
@@ -90,4 +102,4 @@ class PaletteMetaForm extends React.Component {
   }
 }
  
-export default PaletteMetaForm;
+export default withStyles(styles)(PaletteMetaForm);

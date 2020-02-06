@@ -9,7 +9,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
 import PaletteMetaForm from './PaletteMetaForm';
-
+import Typography from '@material-ui/core/Typography';
+import media from './mediaQueries';
 
 const styles = {
   root: {
@@ -18,14 +19,30 @@ const styles = {
   cToolbar: {
     display: 'flex',
     justifyContent: 'space-between',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    [media('xs')]: {
+      padding: '0 8px',
+    },
   },
   navBtns: {
     display: 'flex',
+    alignItems: 'center',
     '& a': {
       textDecoration: "none"
     }
+  },
+  titleContainer: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+  goBackBtn: {
+    [media('xs')]: {
+      padding: '0 6px',
+      fontSize: '.8rem',
+      lineHeight: '30px'
+    },
   }
+  
 }
 
 class PaletteFormNav extends React.Component {
@@ -47,19 +64,23 @@ class PaletteFormNav extends React.Component {
           })}
         >
           <Toolbar className={this.props.classes.cToolbar}>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-              edge="start"
-              className={clsx(mClasses.menuButton, open && mClasses.hide)}
-            >
-              <MenuIcon />
-            </IconButton>
+            <div class={this.props.classes.titleContainer}>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                onClick={handleDrawerOpen}
+                edge="start"
+                className={clsx(mClasses.menuButton, open && mClasses.hide)}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography variant='h5'>Create A Palette</Typography>
+
+            </div>
             <div className={mClasses.navBtns}>
               <PaletteMetaForm handleSubmit={handleSubmit} palettes={palettes}/>
               <Link to='/'>
-                <Button  variant='contained' color='primary' disableElevation>Go Back</Button>
+                <Button  className={this.props.classes.goBackBtn} variant='contained' color='primary' disableElevation>Go Back</Button>
               </Link>
             </div>
           </Toolbar>

@@ -4,13 +4,14 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import DraggableColorList from './DraggableColorList';
 import arrayMove from 'array-move';
 import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
+import media from './mediaQueries';
 
 const drawerWidth = 400;
 
@@ -35,6 +36,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     menuButton: {
       marginRight: theme.spacing(2),
+      [media('xs')]: {
+        marginRight: 0
+      },
     },
     hide: {
       display: 'none',
@@ -161,7 +165,6 @@ export default function NewPaletteForm(props) {
         </div>
         <Divider />
         <div className={classes.container}>
-          <Typography variant='h4' gutterBottom>Create A Palette</Typography>
           <div className={classes.btns}>
             <Button className={classes.btn} onClick={clearPalette} variant='contained' color='secondary' disableElevation>Clear Palette</Button>
             <Button className={classes.btn} disabled={paletteIsFull} onClick={handleRandomColor} variant='contained' color='primary' disableElevation>Random Color</Button>
