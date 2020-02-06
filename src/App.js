@@ -13,7 +13,8 @@ import NewPaletteForm from './NewPaletteForm';
 class App extends Component{
   constructor(props){
     super(props)
-    this.state = {palettes: seedColors}
+    const savedPalettes = JSON.parse(localStorage.getItem('palettes'));
+    this.state = { palettes: savedPalettes || seedColors}
   }
 
   renderPalette = id => { 
@@ -23,7 +24,11 @@ class App extends Component{
   }
 
   savePalette = (newPalette) => {
-    this.setState({palettes: [...this.state.palettes, newPalette]})
+    this.setState({palettes: [...this.state.palettes, newPalette]}, this.syncLocalStorage)
+  }
+
+  syncLocalStorage = () => {
+    localStorage.setItem('palettes', JSON.stringify(this.state.palettes));
   }
 
   render () {
