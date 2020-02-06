@@ -1,22 +1,24 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const styles = {
   root: {
+    position: 'relative',
     backgroundColor: 'white',
     borderRadius: '5px',
     padding: '.5rem',
     overflow: 'hidden',
-    '&:hover': {
-      cursor: 'pointer'
+    cursor: 'pointer',
+    '&:hover svg': {
+      opacity: 1
     }
   },
   colors: {
     backgroundColor: '#dae1e4',
     borderRadius: '5px',
     height: '150px',
-    overflow: 'hidden',
-    // marginBottom: '-9px'
+    overflow: 'hidden'
   },
   title: {
     display: 'flex',
@@ -37,6 +39,21 @@ const styles = {
     width: '20%',
     display: 'inline-block',
     marginBottom: '-3.5px'
+  },
+  delete: {
+  },
+  deleteIcon: {
+    fill: 'white',
+    backgroundColor: '#eb3d30',
+    width: '20px',
+    height: '20px',
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    padding: '10px',
+    zIndex: '10',
+    opacity: 0,
+    transition: 'all .3s ease-in-out'
   }
 };
 
@@ -52,6 +69,9 @@ const MiniPalette = props => {
   }
   return (
     <div className={classes.root} onClick={props.onPaletteClick}>
+      <div className={classes.delete}>
+        <DeleteIcon className={classes.deleteIcon}/>
+      </div>
       <div className={classes.colors}>
         {renderMiniColorBoxes()}
       </div>
