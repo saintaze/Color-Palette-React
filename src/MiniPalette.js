@@ -67,10 +67,15 @@ const MiniPalette = props => {
       <div className={classes.miniColorBox} style={{backgroundColor: c.color}} key={c.name}></div>
     )
   }
+
+  const hanldeDeletePalette = (e) => {
+    e.stopPropagation()
+    props.deletePalette(props.id)
+  }
   return (
     <div className={classes.root} onClick={props.onPaletteClick}>
       <div className={classes.delete}>
-        <DeleteIcon className={classes.deleteIcon}/>
+        {props.palettesCount !== 1 && <DeleteIcon className={classes.deleteIcon} onClick={hanldeDeletePalette} />}
       </div>
       <div className={classes.colors}>
         {renderMiniColorBoxes()}
