@@ -3,13 +3,16 @@ import { withStyles } from '@material-ui/core/styles';
 import {Link} from 'react-router-dom';
 import MiniPalette from './MiniPalette';
 import media from './mediaQueries';
+import bg from './bg.svg';
 
 const styles = {
   root: {
-    backgroundColor: 'skyblue',
-    height: '100vh',
+    backgroundColor: '#394bad',
+    backgroundImage: `url(${bg})`, 
+    minHeight: '100vh',
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    paddingBottom: '3rem'
   },
   container: {
     width: '70%'
@@ -23,10 +26,13 @@ const styles = {
       color: 'white'
     }
   },
+  title: {
+    fontSize: '2rem'
+  },
   palettes:{
     boxSizing: 'border-box',
     display: 'grid',
-    gridTemplateColumns: 'repeat(3, 30%)',
+    gridTemplateColumns: 'repeat(3, 1fr)',
     gridGap: '2.5rem',
     [media('md')]: {
       gridTemplateColumns: 'repeat(2, 50%)',
@@ -34,7 +40,7 @@ const styles = {
     },
     [media('xs')]: {
       gridTemplateColumns: 'repeat(1, 100%)',
-      gridGap: '1rem',
+      gridGap: '1.3rem',
     },
   }
 };
@@ -65,7 +71,7 @@ class PaletteList extends Component {
       <div className={classes.root}>
         <div className={classes.container}>
           <nav className={classes.nav}>
-            <h1>Colors Pinetta</h1>
+            <h1 className={classes.title}>Colors Pinetta</h1>
             <Link to='/palette/new'>Create Palette</Link>
           </nav>
           <div className={classes.palettes}>
