@@ -70,7 +70,7 @@ const MiniPalette = props => {
 
   const hanldeDeletePalette = (e) => {
     e.stopPropagation()
-    props.deletePalette(props.id)
+    props.openDeleteDialog(props.id)
   }
   return (
     <div className={classes.root} onClick={props.onPaletteClick}>
