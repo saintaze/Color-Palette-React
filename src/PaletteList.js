@@ -2,10 +2,23 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import {Link} from 'react-router-dom';
 import MiniPalette from './MiniPalette';
+import {
+  CSSTransition,
+  TransitionGroup,
+} from 'react-transition-group';
 import media from './mediaQueries';
 import bg from './bg.svg';
 
 const styles = {
+  '@global': {
+    '.fade-exit': {
+      opacity: '1'
+    },
+    '.fade-exit-active': {
+      opacity: '0',
+      transition: 'opacity .5s ease-out'
+    }
+  },
   root: {
     backgroundColor: '#394bad',
     backgroundImage: `url(${bg})`, 
@@ -54,14 +67,20 @@ class PaletteList extends Component {
   handlePaletteClick = (id) => this.props.history.push(`/palette/${id}`)
 
   renderPaletteList = () => {
-    return this.props.seedColors.map(p =>  
-      <MiniPalette 
-        {...p} 
-        key={p.paletteName} 
-        onPaletteClick={() => this.handlePaletteClick(p.id)} 
-        deletePalette={this.props.deletePalette}
-        palettesCount={this.props.seedColors.length} 
-        />
+    return this.props.seedColors.map(p => 
+      <CSSTransition
+        key={p.paletteName}
+        timeout={500}
+        classNames="fade"
+      > 
+        <MiniPalette 
+          {...p} 
+          key={p.paletteName} 
+          onPaletteClick={() => this.handlePaletteClick(p.id)} 
+          deletePalette={this.props.deletePalette}
+          palettesCount={this.props.seedColors.length} 
+          />
+      </CSSTransition>
     )
   }
 
@@ -74,9 +93,9 @@ class PaletteList extends Component {
             <h1 className={classes.title}>Colors Pinetta</h1>
             <Link to='/palette/new'>Create Palette</Link>
           </nav>
-          <div className={classes.palettes}>
-            {this.renderPaletteList()}
-          </div>
+            <TransitionGroup className={classes.palettes}>
+             {this.renderPaletteList()}
+            </TransitionGroup>
         </div>
       </div>
      );
