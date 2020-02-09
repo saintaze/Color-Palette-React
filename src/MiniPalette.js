@@ -58,7 +58,6 @@ const styles = {
 };
 
 
-
 const MiniPalette = props => {
   const{classes, paletteName, emoji, colors} = props;
   
@@ -72,6 +71,7 @@ const MiniPalette = props => {
     e.stopPropagation()
     props.openDeleteDialog(props.id)
   }
+  
   return (
     <div className={classes.root} onClick={props.onPaletteClick}>
       <div className={classes.delete}>

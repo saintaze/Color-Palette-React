@@ -54,6 +54,7 @@ class PaletteMetaForm extends React.Component {
       paletteName
     }
     this.props.handleSubmit(newPalette);
+    this.setState({ stage: '' })
   }
 
   componentDidMount = () => {
