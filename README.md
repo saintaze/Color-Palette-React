@@ -7,6 +7,7 @@ An app for creating colors.
 + Create new Palettes
 + Route Transitions
 + Local Storage to persist data
++ Draggable Color boxes
 
 ##### Built With
 + HTML5
